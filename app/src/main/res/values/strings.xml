@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">FoodyApp</string>
+    <string name="recipe_fragment_name">Recipes</string>
+    <string name="favorite_recipes_fragment_name">Favorite</string>
+    <string name="food_joke_fragment_name">Joke</string>
+    <string name="error_image_view">No Internet Connection</string>
+    <string name="floating_button_recipe">Floating Button</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+</resources>

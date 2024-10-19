@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/recipesRowLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    android:layout_marginTop="4dp">
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/rowCV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/lightMediumGray"
+        app:strokeWidth="1dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/recipeIV"
+                android:layout_width="200dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/heartIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="36dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/heartTV"
+                app:layout_constraintStart_toStartOf="@+id/heartTV"
+                app:layout_constraintTop_toBottomOf="@+id/recipeDescripeTV"
+                app:srcCompat="@drawable/ic_heart"
+                app:tint="@color/red" />
+
+            <ImageView
+                android:id="@+id/clockIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/clockTV"
+                app:layout_constraintStart_toStartOf="@+id/clockTV"
+                app:layout_constraintTop_toTopOf="@+id/heartIV"
+                app:srcCompat="@drawable/ic_clock"
+                app:tint="@color/yellow" />
+
+            <ImageView
+                android:id="@+id/leafIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.5"
+                app:layout_constraintEnd_toEndOf="@+id/leafTV"
+                app:layout_constraintStart_toStartOf="@+id/leafTV"
+                app:layout_constraintTop_toTopOf="@+id/clockIV"
+                app:srcCompat="@drawable/ic_leaf"
+                 />
+
+            <TextView
+                android:id="@+id/heartTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:textAlignment="center"
+                android:text="100"
+                app:layout_constraintStart_toStartOf="@+id/recipeDescripeTV"
+                app:layout_constraintTop_toBottomOf="@+id/heartIV" />
+
+            <TextView
+                android:id="@+id/recipeDescripeTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="@string/lorem_ipsum"
+                android:textColor="@color/darkGray"
+                app:layout_constraintEnd_toEndOf="@+id/recipeTitleTV"
+                app:layout_constraintStart_toStartOf="@+id/recipeTitleTV"
+                app:layout_constraintTop_toBottomOf="@+id/recipeTitleTV" />
+
+            <TextView
+                android:id="@+id/clockTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:textColor="@color/yellow"
+                android:textAlignment="center"
+                android:text="100"
+                app:layout_constraintStart_toEndOf="@+id/heartTV"
+                app:layout_constraintTop_toBottomOf="@+id/clockIV" />
+
+            <TextView
+                android:id="@+id/leafTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:textAlignment="center"
+                android:textColor="@color/darkGray"
+                android:text="100"
+                app:layout_constraintStart_toEndOf="@+id/clockTV"
+                app:layout_constraintTop_toBottomOf="@+id/leafIV" />
+
+            <TextView
+                android:id="@+id/recipeTitleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/courgette"
+                android:maxLines="2"
+                android:text="TextView"
+                android:textColor="@color/darker"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/recipeIV"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
