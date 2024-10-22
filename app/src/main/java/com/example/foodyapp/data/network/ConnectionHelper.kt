@@ -3,11 +3,11 @@ package com.example.foodyapp.data.network
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import dagger.hilt.android.qualifiers.ActivityContext
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class ConnectionHelper @Inject constructor(
-    @ActivityContext context: Context
+    @ApplicationContext context: Context
 ) {
 
     private val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
