@@ -9,8 +9,8 @@ import com.example.foodyapp.util.Constants.Companion.QUERY_FILL_INGREDIENTS
 import com.example.foodyapp.util.Constants.Companion.QUERY_NUMBER
 import com.example.foodyapp.util.Constants.Companion.QUERY_TYPE
 
-class RecipesViewModel: ViewModel() {
-     fun applyQueries():HashMap<String, String>{
+class RecipesViewModel : ViewModel() {
+    fun applyQueries(): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()
 
         queries[QUERY_NUMBER] = "50"

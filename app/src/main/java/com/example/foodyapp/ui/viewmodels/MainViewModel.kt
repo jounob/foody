@@ -1,14 +1,18 @@
 package com.example.foodyapp.ui.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.foodyapp.data.Repository
+import com.example.foodyapp.data.database.RecipesEntity
 import com.example.foodyapp.data.network.ConnectionHelper
 import com.example.foodyapp.models.recipes.FoodRecipeDM
 import com.example.foodyapp.ui.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
@@ -17,8 +21,14 @@ class MainViewModel @Inject constructor(
     private val repository: Repository,
     private val connectionHelper: ConnectionHelper
 ) : ViewModel() {
-     var recipesResponse: MutableLiveData<NetworkResult<FoodRecipeDM>> = MutableLiveData()
-//    val _recipesResponse: LiveData<NetworkResult<FoodRecipeDM>> = recipesResponse
+
+    // Room DataBase
+
+    val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readDatabase().asLiveData()
+
+    // Retrofit
+    var recipesResponse: MutableLiveData<NetworkResult<FoodRecipeDM>> = MutableLiveData()
+    // val _recipesResponse: LiveData<NetworkResult<FoodRecipeDM>> = recipesResponse
 
     fun getRecipes(queries: Map<String, String>) = viewModelScope.launch {
         getRecipesSafeCall(queries)
@@ -30,6 +40,9 @@ class MainViewModel @Inject constructor(
             try {
                 val response = repository.remote.getRecipes(queries)
                 recipesResponse.value = handleFoodRecipesResponse(response)
+
+                val foodRecipe = recipesResponse.value!!.data
+                foodRecipe?.let { offlineCacheRecipes(foodRecipe) }
             } catch (e: Exception) {
                 recipesResponse.value = NetworkResult.Error("Recipes not found")
             }
@@ -51,4 +64,14 @@ class MainViewModel @Inject constructor(
             else -> NetworkResult.Error(response.message())
         }
     }
+
+    private fun offlineCacheRecipes(foodRecipe: FoodRecipeDM) {
+        val recipesEntity = RecipesEntity(foodRecipe)
+        insertRecipes(recipesEntity)
+    }
+
+    private fun insertRecipes(recipesEntity: RecipesEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.insertRecipes(recipesEntity)
+        }
 }
